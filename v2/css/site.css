@@ -117,7 +117,8 @@ html:not(.js) .chapter:not(:first-child) { display: none; }
 
 /* Abertura: o nome da equipe e o satélite */
 .hero { position: relative; height: 100svh; min-height: 640px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr) auto; column-gap: 20px; padding: 112px var(--m) clamp(20px, 3vh, 36px); overflow: hidden; }
-.hero__top { grid-column: 1 / span 4; grid-row: 1 / span 2; align-self: start; display: grid; gap: 28px; padding-top: 4vh; z-index: 2; }
+.hero__top { grid-column: 1 / span 4; grid-row: 1 / span 2; align-self: start; display: grid; gap: clamp(14px, 2.6vh, 28px); padding-top: 2vh; z-index: 2; }
+@media (max-height: 760px) and (min-width: 761px) { .hero { padding-top: 92px; } .hero__lead { font-size: clamp(22px, 2vw, 30px); } }
 .hero__lead { font-size: var(--t-h); font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; max-width: 26ch; }
 .hero__sub { color: var(--ink-soft); max-width: 36ch; }
 .hero__actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -129,7 +130,7 @@ html:not(.js) .chapter:not(:first-child) { display: none; }
 .hero__poster { position: absolute; left: 50%; top: 50%; height: 92%; width: auto; transform: translate(-50%, -50%); pointer-events: none; transition: opacity 600ms var(--ease-out); }
 .hero-live .hero__poster { opacity: 0; }
 .hero__caption { position: absolute; right: 0; bottom: 8px; font-size: var(--t-small); color: var(--ink-quiet); max-width: 28ch; text-align: right; }
-.hero__title { grid-column: 1 / -1; grid-row: 3; display: grid; margin-top: 16px; font-weight: 900; font-size: clamp(56px, 15.2vw, 300px); line-height: 0.8; letter-spacing: -0.055em; text-transform: uppercase; z-index: 2; }
+.hero__title { grid-column: 1 / -1; grid-row: 3; display: grid; margin-top: 16px; font-weight: 900; font-size: clamp(56px, min(15.2vw, 23svh), 300px); line-height: 0.8; letter-spacing: -0.055em; text-transform: uppercase; z-index: 2; }
 .js .hero__title span { display: block; transform: translateY(40%); opacity: 0; transition: transform 1000ms var(--ease-out), opacity 700ms var(--ease-out); }
 .js .hero__title span:nth-child(2) { transition-delay: 90ms; }
 .js .hero.is-in .hero__title span { transform: none; opacity: 1; }
