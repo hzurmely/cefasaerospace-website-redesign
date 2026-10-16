@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CEFAST Aerospace · versão 2.0</title>
+<meta name="description" content="A CEFAST Aerospace é a equipe estudantil de engenharia aeroespacial do CEFET MG. Campeã CanSat do CubeDesign 2025, a equipe leva o CubeSat FCP-01 ao CubeDesign 2026, em Buenos Aires.">
+<meta name="theme-color" content="#050D1A">
+<meta property="og:title" content="CEFAST Aerospace">
+<meta property="og:description" content="Equipe estudantil do CEFET MG que projeta, integra e valida pequenos satélites.">
+<meta property="og:image" content="../assets/og.jpg">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preload" href="../fonts/montserrat-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="../versao.css">
+<script defer src="../versao.js" data-atual="2.0" data-raiz="../"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script type="importmap">{"imports":{"three":"../vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header class="bar">
+  <a class="bar__brand" href="#topo" aria-label="CEFAST Aerospace, início"><img src="../assets/logo-cefast-aerospace.png" alt="CEFAST Aerospace" width="676" height="306"></a>
+  <nav class="bar__nav" aria-label="Principal">
+    <a href="#equipe">Equipe</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#satelite">FCP-01</a>
+    <a href="#faca-parte">Faça parte</a>
+    <a href="#apoie">Apoie</a>
+  </nav>
+</header>
+
+<main id="topo">
+  <!-- Abertura: o nome da equipe, com o satélite que ela está construindo -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__top">
+      <p class="hero__lead">Equipe estudantil do CEFET MG que projeta, integra e valida pequenos satélites.</p>
+      <p class="hero__sub">Campeã CanSat do CubeDesign 2025. Em novembro de 2026 a equipe leva o CubeSat FCP-01 ao CubeDesign, em Buenos Aires.</p>
+      <div class="hero__actions">
+        <a class="button" href="#apoie">Apoie a equipe</a>
+        <a class="hero__link" href="#equipe">Conheça as frentes</a>
+      </div>
+    </div>
+    <div class="hero__stage">
+      <canvas class="hero__canvas" aria-label="Modelo 3D do FCP-01, o CubeSat da equipe. Arraste para girar." role="img"></canvas>
+      <img class="hero__poster" src="../assets/render-inteiro.webp" alt="O FCP-01 montado: estrutura de alumínio vazada com quatro placas empilhadas." width="1400" height="1750">
+      <p class="hero__caption">FCP-01, o CubeSat 2U que a equipe está construindo. Arraste para girar.</p>
+    </div>
+    <h1 class="hero__title" id="hero-title"><span>CEFAST</span><span>Aerospace</span></h1>
+  </section>
+
+
+  <section class="fronts" id="equipe" aria-labelledby="fronts-title">
+    <h2 class="fronts__title reveal" id="fronts-title">Quatro frentes, uma só missão</h2>
+    <ul class="fronts__list">
+      <li class="fronts__row reveal">
+        <h3 class="fronts__name">Mecânica</h3>
+        <p>Desenha a estrutura em alumínio 6061 T4, a fixação de cada placa e as análises estáticas no CAD. A escolha do material passou por magnésio AZ91 e AZ31 e pelo PETG.</p>
+      </li>
+      <li class="fronts__row reveal">
+        <h3 class="fronts__name">Embarcados</h3>
+        <p>Responde pelo computador de bordo, pelo TT&amp;C e pelo payload. No FCP-01, um ESP32 controla o rádio LoRa e um Raspberry Pi decodifica sinais ADS B.</p>
+      </li>
+      <li class="fronts__row reveal">
+        <h3 class="fronts__name">Controle e Energia</h3>
+        <p>Cuida do controle de atitude e do EPS, o Electric Power System. No FCP-01, uma roda de reação em anel e uma célula 21700 com BMS e reguladores.</p>
+      </li>
+      <li class="fronts__row reveal">
+        <h3 class="fronts__name">Administração</h3>
+        <p>Busca parceiros e patrocínio e organiza a logística das competições. É a frente que leva a equipe inteira até Buenos Aires.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="steps" id="metodo" aria-label="Como a equipe trabalha">
+    <div class="steps__item reveal" style="--c:1">
+      <h2 class="steps__line">Primeiro, os requisitos.</h2>
+      <p>Toda missão começa pelo que o satélite precisa cumprir. No FCP-01: até 20 aeronaves por vez e 10 minutos por passagem.</p>
+    </div>
+    <div class="steps__item reveal" style="--c:3">
+      <h2 class="steps__line">Depois, a arquitetura.</h2>
+      <p>A equipe divide o satélite em subsistemas e registra cada interface entre eles em um ICD.</p>
+    </div>
+    <div class="steps__item reveal" style="--c:5">
+      <h2 class="steps__line">Então, a integração.</h2>
+      <p>Estrutura, placas e software se encontram no mesmo modelo, peça por peça, antes de ir para a bancada.</p>
+    </div>
+    <div class="steps__item reveal" style="--c:7">
+      <h2 class="steps__line steps__line--last">Por fim, a validação.</h2>
+      <p>Ensaios e análises confirmam o projeto antes da competição. A estrutura do FCP-01 já passou por análise estática.</p>
+    </div>
+  </section>
+
+  <section class="record" id="resultados" aria-labelledby="record-title">
+    <h2 class="record__title reveal" id="record-title"><span>Resultados</span><span>no CubeDesign</span></h2>
+    <p class="record__count reveal" data-countdown="2026-11-24T09:00:00-03:00" data-end="2026-11-27T23:59:00-03:00"><span class="record__days">39</span> <span class="record__unit">dias até o CubeDesign 2026, na UNSAM, em Buenos Aires.</span></p>
+    <div class="record__wrap reveal">
+      <table class="record__table">
+        <caption class="sr">Resultados da CEFAST Aerospace no CubeDesign</caption>
+        <thead><tr><th scope="col">Ano</th><th scope="col">Projeto</th><th scope="col">Competição</th><th scope="col">Resultado</th></tr></thead>
+        <tbody>
+          <tr><td>2025</td><td>CanSat</td><td>CubeDesign, promovido pelo INPE</td><td>1º lugar</td></tr>
+          <tr><td>2026</td><td>FCP-01, CubeSat 2U</td><td>CubeDesign, UNSAM, Buenos Aires</td><td>Em disputa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="project" aria-labelledby="project-title">
+    <h2 class="project__title reveal" id="project-title">O projeto de agora</h2>
+    <p class="project__lead reveal">O FCP-01 é um CubeSat 2U com payload ADS B: ele escuta as aeronaves em 1090 MHz e desce os dados por rádio LoRa. Role para abrir o satélite e ver o que cada frente entrega.</p>
+  </section>
+
+  <!-- O satélite fica preso na tela e abre um subsistema por vez -->
+  <section class="story" id="satelite" aria-label="O FCP-01 por subsistema">
+    <div class="story__pin">
+      <div class="story__stage">
+        <canvas class="story__canvas" aria-label="Modelo 3D do FCP-01 aberto por subsistema. Arraste para girar." role="img"></canvas>
+      </div>
+      <div class="story__copy" aria-live="polite">
+        <div class="chapter is-on" data-chapter="0">
+          <h2>FCP-01, CubeSat 2U</h2>
+          <p class="chapter__front">Todas as frentes</p>
+          <p>100 × 100 × 197 mm de estrutura e quatro placas empilhadas. Arraste para girar e role para abrir.</p>
+        </div>
+        <div class="chapter" data-chapter="1">
+          <h2>Estrutura</h2>
+          <p class="chapter__front">Frente de Mecânica</p>
+          <p>Dois perfis em L e duas tampas em alumínio 6061 T4, vazados para tirar massa sem perder rigidez.</p>
+        </div>
+        <div class="chapter" data-chapter="2">
+          <h2>Controle de atitude</h2>
+          <p class="chapter__front">Frente de Controle e Energia</p>
+          <p>Um anel de 80 mm gira sobre o motor, na base da estrutura, e troca momento angular com o satélite para controlar a atitude.</p>
+        </div>
+        <div class="chapter" data-chapter="3">
+          <h2>EPS, Electric Power System</h2>
+          <p class="chapter__front">Frente de Controle e Energia</p>
+          <p>Célula 21700 com BMS 2S, medição de corrente por INA219 e reguladores XL4015 e MT3608, em duas placas da pilha.</p>
+        </div>
+        <div class="chapter" data-chapter="4">
+          <h2>Computador de bordo e TT&amp;C</h2>
+          <p class="chapter__front">Frente de Embarcados</p>
+          <p>Um ESP32 controla o rádio LoRa de telecomando e telemetria e lê a IMU. A antena sai por burn wire, um fio que queima para soltá-la.</p>
+        </div>
+        <div class="chapter" data-chapter="5">
+          <h2>Payload ADS B</h2>
+          <p class="chapter__front">Frente de Embarcados</p>
+          <p>Antena de 3/4 de onda em 1090 MHz, RTL SDR e Raspberry Pi rodando dump1090. Sem aeronave à vista, o payload mede o ruído de fundo.</p>
+        </div>
+      </div>
+      <div class="story__side">
+        <ul class="story__steps" aria-label="Subsistemas">
+          <li><button type="button" data-go="0" aria-current="true">Inteiro</button></li>
+          <li><button type="button" data-go="1">Estrutura</button></li>
+          <li><button type="button" data-go="2">Atitude</button></li>
+          <li><button type="button" data-go="3">Energia</button></li>
+          <li><button type="button" data-go="4">Bordo</button></li>
+          <li><button type="button" data-go="5">Payload</button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="detalhes" aria-labelledby="band-title">
+    <h2 class="band__title reveal" id="band-title">Peça por peça</h2>
+    <div class="band__row reveal">
+      <figure class="band__panel" style="--g:5">
+        <img src="../assets/render-estrutura.webp" alt="Estrutura do FCP-01 vista de perto, com os recortes hexagonais e o anel em X na lateral." width="1400" height="1750" loading="lazy">
+        <figcaption class="band__label">A estrutura<br>vista de fora</figcaption>
+      </figure>
+      <figure class="band__panel" style="--g:2">
+        <img src="../assets/render-roda.webp" alt="Roda de reação em anel montada sobre o motor, com as placas acima em transparência." width="900" height="1750" loading="lazy">
+      </figure>
+      <figure class="band__panel" style="--g:3">
+        <img src="../assets/render-placas.webp" alt="Pilha de placas afastada, com a célula 21700 e o BMS em destaque." width="1100" height="1750" loading="lazy">
+      </figure>
+      <figure class="band__panel" style="--g:2">
+        <img src="../assets/render-payload.webp" alt="Placa do payload vista de cima, com o RTL SDR e o Raspberry Pi." width="900" height="1750" loading="lazy">
+      </figure>
+    </div>
+    <p class="band__note reveal">Estrutura, roda de reação, pilha de placas e payload. Imagens geradas do modelo de CAD do FCP-01.</p>
+  </section>
+
+  <section class="join" id="faca-parte" aria-labelledby="join-title">
+    <h2 class="join__title reveal" id="join-title">Faça parte da equipe</h2>
+    <div class="join__body reveal">
+      <img class="join__img" src="../assets/render-equipe.webp" alt="O FCP-01 montado, visto de perto: a estrutura vazada e as placas da equipe por dentro." width="900" height="900" loading="lazy">
+      <div class="join__text">
+        <p class="join__lead">O processo seletivo abre vagas para estudantes do CEFET MG nas frentes da equipe.</p>
+        <p>Não precisa chegar sabendo tudo: a equipe tem onboarding técnico para quem entra. As vagas e as datas saem primeiro no Instagram.</p>
+        <a class="join__link" href="https://www.instagram.com/cefastaerospace/" target="_blank" rel="noopener">Siga @cefastaerospace →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="apoie" aria-label="Apoie a CEFAST Aerospace">
+    <a class="cta__link" href="mailto:cefastaerospace@gmail.com?subject=Patroc%C3%ADnio%20da%20CEFAST%20Aerospace&amp;body=Ol%C3%A1%2C%20equipe%20CEFAST%20Aerospace.%20Quero%20conhecer%20as%20cotas%20de%20patroc%C3%ADnio.">
+      <span class="cta__note">Passagens, hospedagem e componentes para Buenos Aires dependem de parceiros. Escreva para a equipe e receba as cotas, de Apoiador a Diamante.</span>
+      <svg class="cta__arrow" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 34 34 14M18 14h16v16" fill="none" stroke="currentColor" stroke-width="3.2"/></svg>
+      <span class="cta__word">Apoie</span>
+    </a>
+  </section>
+</main>
+
+<footer class="foot">
+  <p class="foot__name" aria-hidden="true"><span>CEFAST</span><span>AEROSPACE</span></p>
+  <div class="foot__row">
+    <ul class="foot__places">
+      <li><a href="mailto:cefastaerospace@gmail.com">cefastaerospace@gmail.com</a></li>
+      <li><a href="https://www.instagram.com/cefastaerospace/" target="_blank" rel="noopener">@cefastaerospace</a></li>
+    </ul>
+    <ul class="foot__links">
+      <li><a href="https://www.linkedin.com/company/cefast-aerospace/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://www.youtube.com/channel/UC_pCVSEK9eapoDFl8jVFm1w/playlists" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://github.com/CefastAerospace" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.facebook.com/cefastaerospace/" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+  </div>
+  <div class="foot__legal">
+    <p>CEFAST Aerospace · CEFET MG · Proposta de redesign, 2026</p>
+    <span><a href="#" data-abrir-versao>Versão 2.0 · trocar</a> · <a href="#topo">Voltar ao topo</a></span>
+  </div>
+</footer>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -44,10 +44,12 @@ async function story() {
     const c = Math.min(last, (progress() / 0.86) * last);
     sat?.setChapter(c);
     // O nome ocupa a primeira tela e sobe quando o satélite começa a abrir
-    const t = Math.min(1, c / 0.75);
-    title.style.setProperty('--title-o', String(1 - t));
-    title.style.setProperty('--title-y', `${-t * 80}px`);
-    title.style.visibility = t >= 1 ? 'hidden' : 'visible';
+    if (title) {
+      const t = Math.min(1, c / 0.75);
+      title.style.setProperty('--title-o', String(1 - t));
+      title.style.setProperty('--title-y', `${-t * 80}px`);
+      title.style.visibility = t >= 1 ? 'hidden' : 'visible';
+    }
     const idx = Math.min(last, Math.round(c));
     if (idx !== shown) {
       chapters[shown].classList.remove('is-on'); chapters[idx].classList.add('is-on');
@@ -65,12 +67,29 @@ async function story() {
   window.addEventListener('resize', update);
   update();
 
+  const start = async () => {
+    try {
+      sat = await createSatellite(canvas, { url: '../assets/fcp01.glb' });
+      document.documentElement.classList.add('is-live');
+      update();
+    } catch (e) {
+      console.warn('Modelo 3D indisponível', e);
+    }
+  };
+  // O segundo modelo só carrega quando a seção se aproxima
+  const near = new IntersectionObserver(([e]) => { if (e.isIntersecting) { near.disconnect(); start(); } }, { rootMargin: '150% 0px' });
+  near.observe(sec);
+}
+
+/* Abertura: o satélite gira ao lado do nome da equipe */
+async function hero() {
+  const sec = document.querySelector('.hero'); if (!sec) return;
+  requestAnimationFrame(() => sec.classList.add('is-in'));
+  const canvas = sec.querySelector('.hero__canvas'); if (!canvas) return;
   try {
-    sat = await createSatellite(canvas, { url: 'assets/fcp01.glb' });
-    document.documentElement.classList.add('is-live');
-    update();
+    await createSatellite(canvas, { url: '../assets/fcp01.glb', hero: true });
+    document.documentElement.classList.add('hero-live');
   } catch (e) {
-    // Sem WebGL a imagem estática continua no lugar
     console.warn('Modelo 3D indisponível', e);
   }
 }
@@ -111,8 +130,7 @@ function countdown() {
 
 function bar() {
   const b = document.querySelector('.bar'); if (!b) return;
-  const s = document.querySelector('.story');
-  const on = () => b.classList.toggle('is-solid', window.scrollY > (s ? s.offsetTop + s.offsetHeight - window.innerHeight - 20 : 40));
+  const on = () => b.classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.6);
   on(); window.addEventListener('scroll', on, { passive: true });
 }
 
@@ -120,4 +138,5 @@ stars();
 bar();
 countdown();
 reveals();
+hero();
 story();

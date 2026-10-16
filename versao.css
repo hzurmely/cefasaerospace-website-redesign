@@ -1,0 +1,40 @@
+/* Tela de escolha de versão */
+html.versao-aberta { overflow: hidden; }
+.versao {
+  position: fixed; inset: 0; z-index: 100; background: #050d1a; color: #fff;
+  display: grid; place-items: center; padding: 24px 16px; overflow-y: auto;
+  font-family: "Montserrat", system-ui, sans-serif;
+  opacity: 0; transition: opacity 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.versao.is-on { opacity: 1; }
+.versao.is-saindo { opacity: 0; pointer-events: none; }
+.versao__caixa { width: min(980px, 100%); text-align: center; }
+.versao__logo { width: 168px; height: auto; margin: 0 auto 40px; }
+.versao__titulo { margin: 0; font-size: clamp(32px, 4.4vw, 64px); font-weight: 900; line-height: 1; letter-spacing: -0.035em; text-transform: uppercase; }
+.versao__nota { margin: 16px 0 48px; color: rgba(255, 255, 255, 0.86); font-size: 17px; }
+.versao__opcoes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; text-align: left; }
+.versao__opcao {
+  display: grid; gap: 10px; align-content: start; padding: 32px; min-height: 300px; border-radius: 24px;
+  background: #0a1830; color: #fff; text-decoration: none;
+  transition: background-color 180ms ease, transform 140ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.versao__opcao:hover { background: #102445; }
+.versao__opcao:active { transform: scale(0.98); }
+.versao__opcao:focus-visible { outline: 2px solid #699ddb; outline-offset: 2px; }
+.versao__opcao.is-atual { background: #07428a; }
+.versao__opcao.is-atual:hover { background: #0a52a8; }
+.versao__num { font-size: clamp(72px, 9vw, 128px); font-weight: 900; line-height: 0.8; letter-spacing: -0.06em; color: #699ddb; margin-bottom: 18px; }
+.versao__opcao.is-atual .versao__num { color: #fff; }
+.versao__nome { font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.05; }
+.versao__texto { font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.86); max-width: 34ch; }
+.versao__ir { margin-top: auto; padding-top: 18px; font-size: 14px; font-weight: 700; }
+@media (max-width: 640px) {
+  .versao { place-items: start center; }
+  .versao__logo { width: 120px; margin-bottom: 24px; }
+  .versao__nota { margin-bottom: 24px; }
+  .versao__opcoes { grid-template-columns: 1fr; }
+  .versao__opcao { min-height: 0; padding: 24px; }
+  .versao__num { font-size: 64px; margin-bottom: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .versao { transition: none; } }
+.versao--pagina { position: static; min-height: 100svh; }

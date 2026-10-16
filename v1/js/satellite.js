@@ -1,8 +1,8 @@
 // Cena 3D do FCP-01. A malha vem do CAD da equipe (SolidWorks), convertida para GLB.
 import * as THREE from 'three';
-import { GLTFLoader } from '../vendor/addons/GLTFLoader.js';
-import { MeshoptDecoder } from '../vendor/addons/meshopt_decoder.module.js';
-import { RoomEnvironment } from '../vendor/addons/RoomEnvironment.js';
+import { GLTFLoader } from '../../vendor/addons/GLTFLoader.js';
+import { MeshoptDecoder } from '../../vendor/addons/meshopt_decoder.module.js';
+import { RoomEnvironment } from '../../vendor/addons/RoomEnvironment.js';
 
 // Grupos do modelo, na ordem em que a página apresenta cada subsistema.
 export const CHAPTERS = [

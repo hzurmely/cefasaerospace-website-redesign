@@ -8,10 +8,23 @@ Publicado em **zurmely.net/redesign** (projeto Cloudflare Pages ligado a este re
 
 Site estático, sem etapa de build. Abra `index.html` com qualquer servidor local.
 
-* `index.html` · página única
-* `css/site.css` · estilos, com as cores e a fonte Montserrat da marca
-* `js/app.js` · fundo estrelado, rolagem por capítulos, entradas e contagem até o CubeDesign
-* `js/satellite.js` · cena 3D do FCP-01 (Three.js)
+## Versões
+
+Toda vez que alguém entra ou recarrega a página, aparece a tela de escolha de versão. Cada versão fica na própria pasta e ganha uma tag no git.
+
+| Versão | Pasta | Tag | Foco |
+|---|---|---|---|
+| 1.0 | `v1/` | `v1.0` | O satélite: o FCP-01 abre peça por peça enquanto a página rola |
+| 2.0 | `v2/` | `v2.0` | A equipe: frentes, método, resultados, o FCP-01, processo seletivo e patrocínio |
+
+Para criar a próxima versão: copie a pasta da última (por exemplo `v2/` para `v3/`), troque `data-atual` e o título no `index.html` dela, acrescente a versão na lista `VERSOES` de `versao.js`, faça o commit e crie a tag (`git tag v3.0`). Para abrir uma versão sem a tela de escolha, use `?direto` no endereço.
+
+## Arquivos
+
+* `index.html` · tela de escolha de versão
+* `versao.js` e `versao.css` · a tela de escolha, usada pela raiz e por todas as versões
+* `vN/index.html`, `vN/css/site.css`, `vN/js/app.js`, `vN/js/satellite.js` · cada versão completa
+* `assets/`, `vendor/`, `fonts/` · compartilhados entre as versões
 * `assets/fcp01.glb` · modelo 3D, extraído da montagem do SolidWorks `estrutura satélite (montada).SLDASM`
 * `assets/render-*.webp` · imagens geradas do mesmo modelo
 * `vendor/` · Three.js 0.169 e os módulos usados
