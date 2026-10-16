@@ -28,7 +28,7 @@ function montar() {
             <span class="versao__num">${v.id}</span>
             <span class="versao__nome">${v.nome}</span>
             <span class="versao__texto">${v.texto}</span>
-            <span class="versao__ir">${v.id === atual ? 'Continuar nesta' : 'Abrir a versão ' + v.id} →</span>
+            <span class="versao__ir">${v.id === atual ? 'Continuar nesta' : 'Abrir a versão ' + v.id}</span>
           </a>`).join('')}
       </div>
     </div>`;
@@ -46,7 +46,9 @@ function montar() {
   if (pagina) { tela.classList.add('versao--pagina'); const ns = document.querySelector('noscript.versao-fallback'); ns?.remove(); }
 
   tela.querySelectorAll('.versao__opcao').forEach((a) => a.addEventListener('click', (e) => {
-    if (a.dataset.versao === atual) { e.preventDefault(); fechar(); }
+    if (a.dataset.versao === atual) { e.preventDefault(); fechar(); return; }
+    // A versão escolhida abre sem repetir a tela; um F5 depois mostra a tela de novo
+    try { sessionStorage.setItem('versao-escolhida', a.dataset.versao); } catch (err) { /* sem armazenamento, a tela aparece de novo */ }
   }));
   requestAnimationFrame(() => tela.classList.add('is-on'));
   (tela.querySelector('.is-atual') || tela.querySelector('.versao__opcao'))?.focus({ preventScroll: true });
@@ -61,7 +63,9 @@ document.addEventListener('click', (e) => {
 });
 
 // ?direto pula a tela (útil para compartilhar uma versão específica)
-if (!new URLSearchParams(location.search).has('direto')) {
+let acabouDeEscolher = false;
+try { acabouDeEscolher = sessionStorage.getItem('versao-escolhida') === atual && !pagina; sessionStorage.removeItem('versao-escolhida'); } catch (err) { /* segue normal */ }
+if (!acabouDeEscolher && !new URLSearchParams(location.search).has('direto')) {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', montar);
   else montar();
 }
