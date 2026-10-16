@@ -1,0 +1,9 @@
+<!doctype html><html><head><style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../vendor/three.module.min.js"}}</script></head><body><canvas id="c" style="width:1400px;height:1750px"></canvas>
+<script type="module">
+import {createSatellite} from '../js/satellite.js';
+const cv=document.getElementById('c');
+const sat=await createSatellite(cv,{url:'../assets/fcp01.glb',interactive:false,autoLoop:false});
+window.shot=(c,yaw,pitch,dist,ty,fov,w,h,alpha)=>{cv.style.width=w+'px';cv.style.height=h+'px';sat.renderOnce(c,yaw,pitch,dist);const cam=sat.camera;cam.fov=fov||26;cam.aspect=w/h;cam.updateProjectionMatrix();cam.position.set(0,Math.sin(pitch)*dist+ty,Math.cos(pitch)*dist);cam.lookAt(0,ty,0);sat.renderer.setClearColor(0x050d1a,alpha?0:1);sat.renderer.render(sat.scene,cam);};
+window.ready=1;
+</script></body></html>
